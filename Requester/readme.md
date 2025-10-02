@@ -35,11 +35,11 @@ python -m playwright install chromium
 
 ### Usage Examples
 
-python3 js_request_modeler_v2.py --url https://target/ -o out --proxy http://127.0.0.1:8080 --save-scripts --ngsw --base https://hostname/ --send --debug --var this.configuration.basePath=/api/v1
+python3 js_request_modeler_v2.py --url https://target/ -o out --proxy http://127.0.0.1:8080 --save-scripts --ngsw --base https://hostname/ --send --debug --var this.configuration.basePath=/api/v1<br>
 
-python3 js_request_modeler_v2.py --url https://app.example.com -o out_v2 --proxy http://127.0.0.1:8080 --headers "Authorization: Bearer <token>" --headers "Cookie: sessionid=abc123; other=xyz" --save-scripts --ngsw --click-rounds 3 --click-max 200 --send --debug
+python3 js_request_modeler_v2.py --url https://app.example.com -o out_v2 --proxy http://127.0.0.1:8080 --headers "Authorization: Bearer <token>" --headers "Cookie: sessionid=abc123; other=xyz" --save-scripts --ngsw --click-rounds 3 --click-max 200 --send --debug<br>
 
-python3 js_request_modeler_v2.py --url https://app.example.com -o out_v2 --goto-same-origin --click-rounds 2 --click-max 120
+python3 js_request_modeler_v2.py --url https://app.example.com -o out_v2 --goto-same-origin --click-rounds 2 --click-max 120<br>
 
-python3 js_request_modeler_v2.py --url https://app.example.com -o out_v2 --timeout 30000 --wait 8000 --max-seconds 300 --debug
+python3 js_request_modeler_v2.py --url https://app.example.com -o out_v2 --timeout 30000 --wait 8000 --max-seconds 300 --debug<br>
 
