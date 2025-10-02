@@ -1,0 +1,28 @@
+GUID -- [A-Z0-9]{8}-([A-Z0-9]{4}-){3}[A-Z0-9]{12}
+Possible Web Service EndPoints -- ^.*\.(svc|SVC|asmx|ASMX)" $OUT_DIR/*
+URLS -- (http(s)|ftp)://[a-z0-9]+(.[a-z]+)+
+Credit Card Numbers -- [1-9][0-9]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}
+ckeditor and ckfinder -- ckeditor|ckfinder|fckeditor
+Path Disclosure -- wwwroot|inetpub|var/html
+Test User -- testuser|usertest
+Hardcoded Authorization Bearer Header -- Authorization: Bearer [A-Fa-f0-9]+
+Hardcoded Authorization Basic Header -- Authorization: Basic [-A-Za-z0-9+=]+
+Possible Authorization Code/String -- AuthorizationCode: \"([A-Za-z0-9]+)\
+SourceMAP Files -- sourceMappingURL=[^:/]+\.map$
+Possible accessToken -- accessToken: '[A-Fa-f0-9\.]+'
+Possible hardcoded usernames -- username: \"[A-Za-z0-9\._@]+\"|username: '[A-Za-z0-9\._@]+'
+Possible hardcoded passwords -- password: \"[A-Za-z0-9\._@]+\"|password: '[A-Za-z0-9\._@]+'
+Local IP Address Detected  -- (127(?:\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$)|(10(?:\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$)|(192\.168(?:\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){2}$)|(172\.(?:1[6-9]|2\d|3[0-1])(?:\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){2}$)
+Recaptcha -- reCaptchakey
+Firebase URLS -- http(s)://.*\.firebaseio.com
+AWS Access Key ID Value -- (A3T[A-Z0-9]|AKIA|AGPA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+AWS Access Key ID -- ((\\\"|'|`)?((?i)aws)?_?((?i)access)_?((?i)key)?_?((?i)id)?(\\\"|'|`)?\\\\s{0,50}(:|=>|=)\\\\s{0,50}(\\\"|'|`)?(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}(\\\"|'|`)?)
+AWS Account ID -- ((\\\"|'|`)?((?i)aws)?_?((?i)account)_?((?i)id)?(\\\"|'|`)?\\\\s{0,50}(:|=>|=)\\\\s{0,50}(\\\"|'|`)?[0-9]{4}-?[0-9]{4}-?[0-9]{4}(\\\"|'|`)?)
+AWS Secret Access Key -- ((\\\"|'|`)?((?i)aws)?_?((?i)secret)_?((?i)access)?_?((?i)key)?_?((?i)id)?(\\\"|'|`)?\\\\s{0,50}(:|=>|=)\\\\s{0,50}(\\\"|'|`)?[A-Za-z0-9/+=]{40}(\\\"|'|`)?)
+AWS Session Token -- ((\\\"|'|`)?((?i)aws)?_?((?i)session)?_?((?i)token)?(\\\"|'|`)?\\\\s{0,50}(:|=>|=)\\\\s{0,50}(\\\"|'|`)?[A-Za-z0-9/+=]{16,}(\\\"|'|`)?)
+Facebook access token -- EAACEdEose0cBA[0-9A-Za-z]+
+Google OAuth Key -- [0-9]+-[0-9A-Za-z_]{32}\.apps\.googleusercontent\.com
+Google Cloud API Key -- AIza[0-9A-Za-z\\-_]{35}
+SSH Password -- sshpass -p.*['|\\"]",
+Username and password in URI -- ([\\w+]{1,24})(://)([^$<]{1})([^\\s\";]{1,}):([^$<]{1})([^\\s\";/]{1,})@[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,24}([^\\s]+)",
+Contains a private key -- -----BEGIN (EC|RSA|DSA|OPENSSH|PGP) PRIVATE KEY",
