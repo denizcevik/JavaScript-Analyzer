@@ -13,25 +13,25 @@ pip install playwright requests jsbeautifier
 python -m playwright install chromium
 
 ### Usage
-
---url                    (required) root page
--o, --out                output directory
---proxy                  http(s) proxy (e.g., http://127.0.0.1:8080)
---headers                repeatable header ("Key: Value")
---user-agent             custom UA
---wait                   extra wait after DOMContentLoaded (ms)
---timeout                page/request timeout (ms)
---save-scripts           save JS seen during crawl
---no-beautify            disable beautify (default: enabled)
---ngsw                   include JS from ngsw.json
---send                   send probe requests to discovered endpoints
---base                   base URL to resolve relative endpoints
---debug                  verbose logging
---max-seconds            overall runtime watchdog
---click-rounds           auto-clicker rounds
---click-max              max clicks per round
---goto-same-origin       navigate same-origin <a href> links
---var key=value          template variable (repeatable)
+<br>
+--url                    (required) root page<br>
+-o, --out                output directory<br>
+--proxy                  http(s) proxy (e.g., http://127.0.0.1:8080)<br>
+--headers                repeatable header ("Key: Value")<br>
+--user-agent             custom UA<br>
+--wait                   extra wait after DOMContentLoaded (ms)<br>
+--timeout                page/request timeout (ms)<br>
+--save-scripts           save JS seen during crawl<br>
+--no-beautify            disable beautify (default: enabled)<br>
+--ngsw                   include JS from ngsw.json<br>
+--send                   send probe requests to discovered endpoints<br>
+--base                   base URL to resolve relative endpoints<br>
+--debug                  verbose logging<br>
+--max-seconds            overall runtime watchdog<br>
+--click-rounds           auto-clicker rounds<br>
+--click-max              max clicks per round<br>
+--goto-same-origin       navigate same-origin <a href> links<br>
+--var key=value          template variable (repeatable)<br>
 
 ### Usage Examples
 
