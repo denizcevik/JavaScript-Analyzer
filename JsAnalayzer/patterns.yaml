@@ -1,0 +1,413 @@
+patterns:
+  email_generic:
+    regex: (?i)(?<![\w.-])([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})(?![\w.-])
+    flags: i
+    group: 1
+    tags:
+    - pii
+    - email
+  uuid_v4:
+    regex: (?i)\b([a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12})\b
+    flags: i
+    group: 1
+    tags:
+    - id
+    - uuid
+  ipv4:
+    regex: \b((?:25[0-5]|2[0-4]\d|[01]?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d?\d)){3})\b
+    flags: i
+    group: 1
+    tags:
+    - network
+    - ip
+  bearer_token:
+    regex: (?i)\bBearer\s+([A-Za-z0-9\-._~+/]+=*)
+    flags: i
+    group: 1
+    tags:
+    - auth
+    - token
+  jwt_compact:
+    regex: \b(eyJ[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+)\b
+    flags: i
+    group: 1
+    tags:
+    - auth
+    - jwt
+  basic_auth:
+    regex: (?i)\bAuthorization\s*:\s*Basic\s+([A-Za-z0-9+/=]{8,})
+    flags: i
+    group: 1
+    tags:
+    - auth
+    - token
+    - basic
+  api_key_generic_kv:
+    regex: (?i)(?:api[_-]?key|apikey|x-api-key)\s*[:=]\s*[\"']?([A-Za-z0-9\-_]{12,})[\"']?
+    flags: i
+    group: 1
+    tags:
+    - secret
+    - api_key
+  secret_generic:
+    regex: (?i)(?:secret|client[_-]?secret|password|pass)\s*[:=]\s*[\"']?([^\"']{8,})[\"']?
+    flags: i|s
+    group: 1
+    tags:
+    - secret
+  csrf_token:
+    regex: (?i)(?:csrf|xsrf)[_-]?token\s*[:=]\s*[\"']?([A-Za-z0-9\-_]{16,})[\"']?
+    flags: i
+    group: 1
+    tags:
+    - auth
+    - csrf
+  google_api_key:
+    regex: \b(AIza[0-9A-Za-z\-_]{35})\b
+    flags: i
+    group: 1
+    tags:
+    - secret
+    - google
+    - api_key
+  firebase_config_block_apiKey:
+    regex: (?i)firebase\s*\.\s*initializeApp\s*\(\s*\{[\s\S]*?apiKey\s*:\s*[\"']([^\"']+)[\"']
+    flags: i|s
+    group: 1
+    tags:
+    - secret
+    - firebase
+    - api_key
+  stripe_live_key:
+    regex: \b(sk_live_[0-9a-zA-Z]{24,})\b
+    flags: i
+    group: 1
+    tags:
+    - secret
+    - stripe
+  stripe_publishable_key:
+    regex: \b(pk_(?:live|test)_[0-9a-zA-Z]{16,})\b
+    flags: i
+    group: 1
+    tags:
+    - key
+    - stripe
+  mapbox_token:
+    regex: \b(sk\.[A-Za-z0-9]{60,}|pk\.[A-Za-z0-9]{60,})\b
+    flags: i
+    group: 1
+    tags:
+    - secret
+    - mapbox
+  sentry_dsn:
+    regex: (?i)https?://([0-9a-f]{32})@o\d+\.ingest\.sentry\.io/\d+
+    flags: i
+    group: 1
+    tags:
+    - dsn
+    - sentry
+  twilio_sid:
+    regex: \b(AC[a-f0-9]{32})\b
+    flags: i
+    group: 1
+    tags:
+    - twilio
+    - id
+  twilio_token:
+    regex: (?i)twilio.*?(?:token|auth|secret)\s*[:=]\s*[\"']([^\"']+)[\"']
+    flags: i|s
+    group: 1
+    tags:
+    - twilio
+    - secret
+  aws_access_key_id:
+    regex: \b(AKIA[0-9A-Z]{16})\b
+    flags: i
+    group: 1
+    tags:
+    - aws
+    - key
+  aws_secret_access_key_like:
+    regex: (?i)(?:aws|amazon).*?(?:secret|sk)\s*[:=]\s*[\"']?([A-Za-z0-9/+=]{32,})[\"']?
+    flags: i|s
+    group: 1
+    tags:
+    - aws
+    - secret
+  github_token:
+    regex: \b(gh[pous]_[A-Za-z0-9]{36,})\b
+    flags: i
+    group: 1
+    tags:
+    - github
+    - token
+  slack_token:
+    regex: \b(xox[abprs]-[A-Za-z0-9\-]{10,})\b
+    flags: i
+    group: 1
+    tags:
+    - slack
+    - token
+  url_http_https:
+    regex: \b(https?://[\w.-]+(?::\d+)?(?:/[\w%./#?&=;:+,\-]*)?)\b
+    flags: i
+    group: 1
+    tags:
+    - url
+    - endpoint
+  graphql_endpoint:
+    regex: (?i)\b(https?://[\w.-]+(?::\d+)?/[\w./-]*?graphql\b[^\s\"']*)
+    flags: i
+    group: 1
+    tags:
+    - url
+    - graphql
+  websocket_endpoint:
+    regex: \b(wss?://[\w.-]+(?::\d+)?(?:/[\w%./#?&=;:+,\-]*)?)\b
+    flags: i
+    group: 1
+    tags:
+    - url
+    - websocket
+  base64_blob:
+    regex: \b([A-Za-z0-9+/]{40,}={0,2})\b
+    flags: i
+    group: 1
+    tags:
+    - blob
+    - base64
+  data_uri_image:
+    regex: (?i)\b(data:image/(?:png|jpe?g|gif);base64,([A-Za-z0-9+/=]{60,}))
+    flags: i
+    group: 1
+    tags:
+    - blob
+    - image
+    - base64
+  semver_version:
+    regex: \b(v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?)\b
+    flags: i
+    group: 1
+    tags:
+    - build
+    - version
+  commit_sha:
+    regex: \b([a-f0-9]{7,40})\b
+    flags: i
+    group: 1
+    tags:
+    - build
+    - git
+  window_env_kv:
+    regex: (?i)window\.__?env\s*=\s*\{[\s\S]*?\b([A-Z0-9_]{3,})\s*:\s*[\""]([^\""]+)[\""]
+    flags: i|s
+    group: 2
+    tags:
+    - config
+    - env
+  env_like_assignment:
+    regex: (?i)\b([A-Z][A-Z0-9_]{2,})\s*[:=]\s*[\""]([^\""]{2,})[\""]
+    flags: i
+    group: 2
+    tags:
+    - config
+    - env
+  localstorage_key:
+    regex: (?i)localStorage\.(?:getItem|setItem)\s*\(\s*[\""]([^\""]+)[\""]
+    flags: i
+    group: 1
+    tags:
+    - storage
+    - localstorage
+  sessionstorage_key:
+    regex: (?i)sessionStorage\.(?:getItem|setItem)\s*\(\s*[\""]([^\""]+)[\""]
+    flags: i
+    group: 1
+    tags:
+    - storage
+    - sessionstorage
+  cookie_name:
+    regex: (?i)\bcookie\s*(?:name|key)?\s*[:=]\s*[\""]([^\""]+)[\""]
+    flags: i
+    group: 1
+    tags:
+    - storage
+    - cookie
+  ipv4_private_10:
+    regex: \b(10(?:\.\d{1,3}){3})\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - ip
+  ipv4_private_172:
+    regex: \b(172\.(?:1[6-9]|2[0-9]|3[0-1])(?:\.\d{1,3}){2})\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - ip
+  ipv4_private_192:
+    regex: \b(192\.168(?:\.\d{1,3}){2})\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - ip
+  ipv4_loopback:
+    regex: \b(127(?:\.\d{1,3}){3})\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - ip
+  ipv4_link_local:
+    regex: \b(169\.254(?:\.\d{1,3}){2})\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - ip
+  ipv6_loopback:
+    regex: \b(::1|0:0:0:0:0:0:0:1)\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - ip
+  ipv6_unique_local:
+    regex: \b(f[c-d][0-9a-f]{2}:[0-9a-f:]+)\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - ip
+  ipv6_link_local:
+    regex: \b(fe[89ab][0-9a-f]:[0-9a-f:]+)\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - ip
+  url_localhost_http:
+    regex: \b(https?://(?:localhost|127(?:\.\d{1,3}){3})(?::\d+)?(?:/[^\s\"'<>]*)?)\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - url
+  url_local_ip_http:
+    regex: \b(https?://(?:10(?:\.\d{1,3}){3}|192\.168(?:\.\d{1,3}){2}|172\.(?:1[6-9]|2[0-9]|3[0-1])(?:\.\d{1,3}){2}|169\.254(?:\.\d{1,3}){2})(?::\d+)?(?:/[^\s\"'<>]*)?)\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - url
+  url_local_domain_http:
+    regex: (?i)\b(https?://[a-z0-9.-]+\.(?:local|lan|home|internal|intranet|test|dev)(?::\d+)?(?:/[^\s\"'<>]*)?)\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - url
+  websocket_local:
+    regex: \b(wss?://(?:localhost|127(?:\.\d{1,3}){3}|10(?:\.\d{1,3}){3}|192\.168(?:\.\d{1,3}){2}|172\.(?:1[6-9]|2[0-9]|3[0-1])(?:\.\d{1,3}){2})(?::\d+)?(?:/[^\s\"'<>]*)?)\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - url
+    - websocket
+  hostport_local:
+    regex: \b((?:localhost|127(?:\.\d{1,3}){3}|10(?:\.\d{1,3}){3}|192\.168(?:\.\d{1,3}){2}|172\.(?:1[6-9]|2[0-9]|3[0-1])(?:\.\d{1,3}){2})(?::\d{2,5}))\b
+    flags: i
+    group: 1
+    tags:
+    - local
+    - url
+  source_mapping_url:
+    regex: (?m)^[ \t]*//#\s*sourceMappingURL\s*=\s*[^\s]+
+    flags: m
+    tags:
+    - sourcemap
+    - info
+  sourcemap_file_ref:
+    regex: (?i)\b[A-Za-z0-9/_\.-]+\.map\b
+    flags: i
+    tags:
+    - sourcemap
+    - info
+  dll_reference:
+    regex: (?i)\b[A-Za-z0-9_.-]+\.dll\b
+    flags: i
+    tags:
+    - dotnet
+    - info
+  service_worker_assets:
+    regex: (?i)\bservice-worker-assets\.js\b
+    flags: i
+    tags:
+    - pwa
+    - info
+  service_worker_js:
+    regex: (?i)\bservice-worker\.js\b
+    flags: i
+    tags:
+    - pwa
+    - info
+  appsettings_json_ref:
+    regex: (?i)\bappsettings(?:\.[A-Za-z0-9_-]+)?\.json\b
+    flags: i
+    tags:
+    - dotnet
+    - config
+    - risk
+  swagger_ref:
+    regex: (?i)\b/swagger(?:/v?\d+)?/(?:swagger\.json|swagger\.yaml|index\.html)?\b
+    flags: i
+    tags:
+    - api
+    - debug
+    - risk
+  debug_admin_paths:
+    regex: (?i)\b/(?:admin|debug|console|actuator|metrics|health|trace|__debug__|phpinfo)\b
+    flags: i
+    tags:
+    - debug
+    - risk
+  azure_servicebus_connstr:
+    regex: (?i)\bEndpoint=sb://[^;]+;SharedAccessKeyName=[^;]+;SharedAccessKey=[A-Za-z0-9+/=]{10,}\b
+    flags: i
+    tags:
+    - azure
+    - secret
+    - risk
+  azure_storage_connstr:
+    regex: (?i)\b(DefaultEndpointsProtocol=https;)?AccountName=[^;]+;AccountKey=[A-Za-z0-9+/=]{20,};EndpointSuffix=[^;]+\b
+    flags: i
+    tags:
+    - azure
+    - secret
+    - risk
+  azure_sas_token:
+    regex: (?i)\bsv=\d{4}-\d{2}-\d{2}&(?:ss|sr)=[^&]+&sp=[^&]+&se=\d{4}-\d{2}-\d{2}T[^&]+&sig=[A-Za-z0-9%+/=]{20,}\b
+    flags: i
+    tags:
+    - azure
+    - secret
+    - risk
+scope:
+  allow: []
+  deny: []
+list:
+  name: leaks.txt
+  source_tags:
+  - secret
+  - api_key
+  - token
+  - env
+  - dsn
+  - local
+  lowercase: false
+  sort: true
+  dedupe: true
